@@ -13,8 +13,27 @@ var app = {
 app.initialize();
 
 var onlogin  = function(){
-    console.log('login');
-    window.alert('cannot connect to server');
+    console.log(db);
+    var name = document.getElementById('name');
+    var password = document.getElementById('password');
+    var result = db.filter(function(a){
+        if(name == a.name || name == a.email){
+            if(password == a.password){
+                return 'found';
+            }else{
+                return 'wrongpass';
+            }
+        }else{
+            return 'notfound'
+        }
+    })
+    if(result == 'found'){
+        window.location.href = './dashboard.html';
+    }else if(result == 'wrongpass'){
+        alert('Incorrect password');
+    }else if(result == 'notfound'){
+        alert('User not found');
+    }
 }
 
 var fingerprint = function(){
