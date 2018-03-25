@@ -36,9 +36,6 @@ var onlogin  = function(){
 
 var fingerprint = function(){
     FingerprintAuth.isAvailable(function (result) {
-        
-        console.log("FingerprintAuth available: " + JSON.stringify(result));
-        // If has fingerprint device and has fingerprints registered
         if (result.isAvailable == true && result.hasEnrolledFingerprints == true) {
             var encryptConfig = {
                 clientId: "DSMT",
@@ -50,24 +47,11 @@ var fingerprint = function(){
                 dialogMessage: "Put your finger on the device",
                 dialogHint: ""
             };
-            alert(encryptConfig.username,encryptConfig.password);
-            // Set config and success callback
+
             FingerprintAuth.encrypt(encryptConfig, function(_fingerResult){
-                // alert('detected');
-                console.log("successCallback(): " + JSON.stringify(_fingerResult));
-                if (_fingerResult.withFingerprint) {
-                    console.log("Successfully encrypted credentials.");
-                    console.log("Encrypted credentials: " + result.token);  
-                } else if (_fingerResult.withBackup) {
-                    console.log("Authenticated with backup password");
-                }
-            // Error callback
+                window.location.href = './dashboard.html'
             }, function(err){
-                    if (err === "Cancelled") {
-                    console.log("FingerprintAuth Dialog Cancelled!");
-                } else {
-                    console.log("FingerprintAuth Error: " + err);
-                }
+                alert('Fingerprint mismatch');
             });
         }
     }, function (message) {

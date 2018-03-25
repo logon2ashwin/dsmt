@@ -4,26 +4,17 @@
 	<title>DSMT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body class="">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
-        .optionlist{
-        padding: 1px 0px 0px 20px;
-        margin-top: 1%;
-        background: white;
-        border-radius: 5px;
-        }
-        .optionlist:hover{
-            box-shadow: 0px 4px 16px -2px;
-        }
+     
     </style>
+</head>
+<body class="dashboard">
     <div class="container dashboard-container">
         <div class="row">
             <div class="col-md-6">
-                <h3>Welcome</h3>
-                <h4>Account Number :</h4>
-                <h4>Account Balance : </h4>
+                <h3>Welcome Raghul</h3>
+                <h4 id='balance'>Account Balance : </h4>
             </div>
             <div class="col-md-6">
                 <div style="margin-top:5%">
@@ -46,22 +37,97 @@
         </div>
     
         <div class="optionlist" role="button">
-            <label >DSMT ></label>
+            <label id='dsmt'>DSMT ></label>
         </div>
         <div class="optionlist" role="button">
-            <label >Benificiary accounts ></label>
+            <label onclick="gobenificiary()">Benificiary accounts ></label>
         </div>
         <div class="optionlist" role="button">
             <label>Transactions ></label>
         </div>
         <div class="optionlist" role="button">
-            <label >Instant Transfer ></label>
+            <label id='it'>Instant Transfer ></label>
         </div>
     </div>
+
+<!-- modals -->
+<!-- dsmt -->
+<div id="dsmtmodal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div style="min-height: auto">
+            <div class="modal-header">
+                <h2>DSMT</h2>
+            </div>
+            <div class="modal-body">
+                <div style="font-weight: normal;">
+                    <div>
+                        <label class="text-capitalize">From</label>
+                        <label><span class="text-capitalize">Raghul</span></label>
+                    </div>
+                    <div>
+                    <label class="text-capitalize">To Account</label>
+                        <select class="form-control" id='toaccount'>
+                        </select>
+                    </div>
+                    <div>
+                    <label class="text-capitalize">Amount</label>
+                    <input class="form-control" type="number" placeholder="Amount" id='todsmt' autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer form-group" style="margin-top: 8%;margin-left: 15%;">
+                    <button class="btn btn-success" onclick="authenticatedsmt()">Confirm</button>
+                    <button class="btn btn-danger" onclick="dsmtdismiss()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- itmodal -->
+<div id="itmodal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div style="min-height: auto">
+                <div class="modal-header">
+                    <h2>Instant Transfer</h2>
+                </div>
+                <div class="modal-body">
+                    <div style="font-weight: normal;">
+                        <div>
+                            <label class="text-capitalize">From</label>
+                            <label><span class="text-capitalize">Raghul</span></label>
+                        </div>
+                        <div>
+                        <label class="text-capitalize">To Account</label>
+                            <select class="form-control" id='toitaccount'>
+                            </select>
+                        </div>
+                        <div>
+                        <label class="text-capitalize">Amount</label>
+                        <input class="form-control" type="number" placeholder="Amount" id='toit' autofocus>
+                        </div>
+                        <div>
+                            <label class="text-capitalize">password</label>
+                            <input class="form-control" type="password" placeholder="Password" id='itpassword' autofocus>
+                        </div>
+                    </div>
+                    <div class="modal-footer form-group" style="margin-top: 8%;margin-left: 15%;">
+                        <button class="btn btn-success" onclick="itTransfer()">Confirm</button>
+                        <button class="btn btn-danger" onclick="itdismiss()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!--  -->
+
 </body>
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-	<script src="js/main.js"></script>
+    <script src="js/db.js"></script>
+	<script src="js/dashboard.js"></script>
 </html>
