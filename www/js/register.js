@@ -1,5 +1,5 @@
 
-var app = {
+var register = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
@@ -10,15 +10,18 @@ var app = {
     
 };
 
-app.initialize();
+register.initialize();
 
-var goregister = function(){
-    window.location.href = './register.html'
-}
-var onlogin  = function(){
+var onregister  = function(){
     console.log(db);
-    var name = document.getElementById('name');
-    var password = document.getElementById('password');
+    var newuser = {
+        name : document.getElementById('name').value,
+        phone : document.getElementById('phone').value,
+        password : document.getElementById('password').value,
+        aadharnumber : document.getElementById('aadharnumber').value,
+        email : document.getElementById('email').value
+    }
+
     var result = db.filter(function(a){
         if(name == a.name || name == a.email){
             if(password == a.password){
