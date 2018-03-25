@@ -14,11 +14,11 @@
                 <div class="inner-container">
                     <label>Username</label>
                     <br>
-                    <input type="text" name="" placeholder="Enter username" autofocus>
+                    <input type="text" id='name' placeholder="Enter username" autofocus>
                     <br>
                     <label>Password</label>
                     <br>
-                    <input  type="password" name="" placeholder="Enter password">
+                    <input  type="password" id='password' placeholder="Enter password">
                     <br>
                     <div>or</div>
                     <div>
@@ -29,7 +29,7 @@
                     <div>
                         <span>or</span>
                     </div>
-                    <button class="reg-btn" >Register</button>
+                    <button class="reg-btn" onclick="register()">Register</button>
                     <br>
                 </div>
             </div>
@@ -40,5 +40,6 @@
 	<script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-	<script src="js/main.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/main.js"></script>
 </html>

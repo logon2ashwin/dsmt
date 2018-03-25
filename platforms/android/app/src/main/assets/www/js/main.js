@@ -5,7 +5,7 @@ var app = {
     },
 
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        // this.receivedEvent('deviceready');
     },
     
 };
@@ -13,8 +13,22 @@ var app = {
 app.initialize();
 
 var onlogin  = function(){
-    console.log('login');
-    window.alert('cannot connect to server');
+    console.log(db);
+    var name = document.getElementById('name').value;
+    var password = document.getElementById('password').value;
+    var result = false;
+    db.forEach(function(a){
+        if(name == a.name || name == a.email){
+            if(password == a.password){
+                result = true;
+            }
+        }
+    });
+    if(result){
+        window.location.href = './dashboard.html';
+    }else{
+        alert('User not found');
+    }
 }
 
 var fingerprint = function(){
@@ -36,7 +50,7 @@ var fingerprint = function(){
             alert(encryptConfig.username,encryptConfig.password);
             // Set config and success callback
             FingerprintAuth.encrypt(encryptConfig, function(_fingerResult){
-                alert('detected');
+                // alert('detected');
                 console.log("successCallback(): " + JSON.stringify(_fingerResult));
                 if (_fingerResult.withFingerprint) {
                     console.log("Successfully encrypted credentials.");

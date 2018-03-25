@@ -14,24 +14,19 @@ app.initialize();
 
 var onlogin  = function(){
     console.log(db);
-    var name = document.getElementById('name');
-    var password = document.getElementById('password');
-    var result = db.filter(function(a){
+    var name = document.getElementById('name').value;
+    var password = document.getElementById('password').value;
+    var result = false;
+    db.forEach(function(a){
         if(name == a.name || name == a.email){
             if(password == a.password){
-                return 'found';
-            }else{
-                return 'wrongpass';
+                result = true;
             }
-        }else{
-            return 'notfound'
         }
-    })
-    if(result == 'found'){
+    });
+    if(result){
         window.location.href = './dashboard.html';
-    }else if(result == 'wrongpass'){
-        alert('Incorrect password');
-    }else if(result == 'notfound'){
+    }else{
         alert('User not found');
     }
 }
