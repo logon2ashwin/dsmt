@@ -12,6 +12,9 @@ var app = {
 
 app.initialize();
 
+var goregister = function(){
+    window.location.href = './register.html'
+}
 var onlogin  = function(){
     console.log(db);
     var name = document.getElementById('name').value;
