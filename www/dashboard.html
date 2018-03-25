@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DSMT</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="">
+    <style>
+        .optionlist{
+        padding: 1px 0px 0px 20px;
+        margin-top: 1%;
+        background: white;
+        border-radius: 5px;
+        }
+        .optionlist:hover{
+            box-shadow: 0px 4px 16px -2px;
+        }
+    </style>
+    <div class="container dashboard-container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Welcome {{customer.username}}</h3>
+                <h4>Account Number : {{customer._id}}</h4>
+                <h4>Account Balance : {{customer.balance}}</h4>
+            </div>
+            <div class="col-md-6">
+                <div style="margin-top:5%">
+                    <div class="col-md-12">
+                        <button class="btn btn-danger pull-right" >logout</button>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="pull-right">
+                            <a role='button'>change PIN</a>
+                            <br>
+                            <a role='button' >change Email</a>
+                            <br>
+                            <a role='button'>change Phone Number</a>
+                            <br>
+                            <a role='button'>change Touch ID</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="optionlist" role="button">
+            <label >DSMT ></label>
+        </div>
+        <div class="optionlist" role="button">
+            <label >Benificiary accounts ></label>
+        </div>
+        <div class="optionlist" role="button">
+            <label>Transactions ></label>
+        </div>
+        <div class="optionlist" role="button">
+            <label >Instant Transfer ></label>
+        </div>
+    </div>
+</body>
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+	<script src="js/main.js"></script>
+</html>
