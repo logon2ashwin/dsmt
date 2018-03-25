@@ -1,6 +1,19 @@
 
 var options = '';
 var bal = '';
+ 
+var getlocaldb = function(){
+    var db = JSON.parse(localStorage.getItem('database'));
+    if(db.length) return db[0];
+    else return db;
+}
+var getlocalbenificiary = function(){
+    return JSON.parse(localStorage.getItem('benificiary'));
+}
+var setlocal = function(value,data){
+    data = JSON.stringify(data);
+    localStorage.setItem(value,data);
+}
 
 // Get the modal
 var dsmtmodal = document.getElementById('dsmtmodal');
@@ -59,32 +72,44 @@ var dsmtdismiss = function(){
 
 var itTransfer = function(){
     var password = document.getElementById('itpassword').value;
-    if(password == db[0].password){
+
+    if(password == getlocaldb().password){
         var aadhar = document.getElementById('toitaccount').value;
         var amount = document.getElementById('toit').value;
         console.log(aadhar,amount);
-        db[0].balance -= amount;
+        var tempdb = getlocaldb();
+        tempdb.balance = parseInt(tempdb.balance) - parseInt(amount);
+        setlocal('database',tempdb)
 
-        benificiary.forEach(function(a){
+        var tempbenificiary = getlocalbenificiary();
+
+        tempbenificiary.forEach(function(a){
             if(a.aadharnumber == aadhar){
-                a.balance += amount;
+                a.balance = parseInt(a.balance) + parseInt(amount);
             }
         })
+        setlocal('benificiary',tempbenificiary)
         itdismiss();
     }else{
         alert('Password mismatch')
     }
 }
 var DSMTtransfer = function(){
-    var aadhar = document.getElementById('toitaccount').value;
-    var amount = document.getElementById('toit').value;
+    var aadhar = document.getElementById('toaccount').value;
+    var amount = document.getElementById('todsmt').value;
     console.log(aadhar,amount);
-    db[0].balance -= amount;
-    benificiary.forEach(function(a){
+    var tempdb = getlocaldb();
+    tempdb.balance = parseInt(tempdb.balance) - parseInt(amount);
+    setlocal('database',tempdb)
+
+    var tempbenificiary = getlocalbenificiary();
+
+    tempbenificiary.forEach(function(a){
         if(a.aadharnumber == aadhar){
-            a.balance += amount;
+            a.balance = parseInt(a.balance) + parseInt(amount);
         }
     })
+    setlocal('benificiary',tempbenificiary)
     dsmtdismiss();
 }
 var authenticatedsmt = function(){
@@ -124,10 +149,14 @@ var renderoptions = function(){
 // initialize
 var dashboard = {
     initialize: function() {
-        localStorage.setItem('database', JSON.stringify(db));
+        if(!localStorage.length){
+            localStorage.setItem('database', JSON.stringify(db));
+            localStorage.setItem('benificiary',JSON.stringify(benificiary));
+        }
+
         renderoptions();
         bal = document.getElementById('balance').innerText
-        bal += db[0].balance;
+        bal += getlocaldb().balance;
         document.getElementById('balance').innerText = bal;
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
